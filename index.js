@@ -12,7 +12,7 @@ const logOnOptions = {
 
 steam.login(logOnOptions, function (err) {
     if (err) {
-        return reject(err);
+        throw err;
     }
     setInterval(() => {
         const time = SteamTotp.time();
