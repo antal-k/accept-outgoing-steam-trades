@@ -42,7 +42,9 @@ steam.login(logOnOptions, function (err) {
         console.log(confirmations);
         steam.acceptAllConfirmations(time, confKey, allowKey, function (err) {
           console.log(err);
-          throw err;
+
+          // TODO: Throwing error here have some problem with syncing?
+          // throw err;
         });
       } else {
         console.log(`No active confirmation`);
