@@ -5,7 +5,7 @@ const steam = new SteamCommunity();
 require("dotenv").config();
 
 const logOnOptions = {
-  accountName: process.env.STEAMID,
+  accountName: process.env.STEAM_USERNAME,
   password: process.env.PASSWORD,
   twoFactorCode: SteamTotp.getAuthCode(process.env.SHARED_SECRET),
 };
@@ -23,12 +23,12 @@ steam.login(logOnOptions, function (err) {
     const confKey = SteamTotp.getConfirmationKey(
       process.env.IDENTITY_SECRET,
       time,
-      "conf",
+      "conf"
     );
     const allowKey = SteamTotp.getConfirmationKey(
       process.env.IDENTITY_SECRET,
       time,
-      "allow",
+      "allow"
     );
 
     steam.getConfirmations(time, confKey, function (err, confirmations) {
@@ -42,6 +42,7 @@ steam.login(logOnOptions, function (err) {
         console.log(confirmations);
         steam.acceptAllConfirmations(time, confKey, allowKey, function (err) {
           console.log(err);
+          throw err;
         });
       } else {
         console.log(`No active confirmation`);
