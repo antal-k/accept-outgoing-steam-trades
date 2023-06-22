@@ -35,7 +35,6 @@ steam.login(logOnOptions, function (err) {
 			if (err) {
 				// Tell me whhat happened
 				console.log(`Error during confirmations: ${err.message}`);
-				throw err;
 			}
 
 			if (confirmations && confirmations.length > 0) {
@@ -51,7 +50,6 @@ steam.login(logOnOptions, function (err) {
 							console.log(`Accepted confirmation ${confirmation.id}`);
 							if (err) {
 								console.log(err);
-								throw err;
 							}
 						}
 					);
