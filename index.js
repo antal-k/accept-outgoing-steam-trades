@@ -18,6 +18,8 @@ steam.login(logOnOptions, function (err) {
     console.log(`Error logging in with steam\n ${err}`);
     throw err;
   }
+
+  console.log(`Successfully loggedin as ${process.env.STEAM_USERNAME}`);
   setInterval(() => {
     const time = SteamTotp.time();
     const confKey = SteamTotp.getConfirmationKey(
@@ -41,7 +43,10 @@ steam.login(logOnOptions, function (err) {
       if (confirmations && confirmations.length > 0) {
         console.log(confirmations);
         steam.acceptAllConfirmations(time, confKey, allowKey, function (err) {
-          console.log(err);
+          if (err) {
+            console.log(err);
+            throw err;
+          }
 
           // TODO: Throwing error here have some problem with syncing?
           // throw err;
