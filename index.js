@@ -44,7 +44,7 @@ steam.login(logOnOptions, function (err) {
 
           console.log(confirmation.title);
 
-          if (confirmations.offerID) {
+          if (confirmation.offerID) {
             // market confirmation wouldn't have receiving/ sending;
             console.log(
               `Trade offer summary for ${confirmation.offerID}: ${confirmation.sending}, ${confirmation.receiving}`
